@@ -1,0 +1,14 @@
+textarea{
+    color: rgb(255, 0, 0);
+    width: 544px;
+}
+
+.container{
+    margin-top: 63px;
+    text-align: center;
+}
+
+button{
+    margin-top: 23px;
+    background-color: rgb(216, 232, 72);
+}
