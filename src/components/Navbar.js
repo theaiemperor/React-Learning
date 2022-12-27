@@ -10,8 +10,8 @@ export default function Navbar(props) {
             <div className="navigationBar">
                 <ul>
                 <li>{props.title}</li>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">{props.about}</Link></li>
+                    <li><Link to="/" className='links'>Home</Link></li>
+                    <li><Link to="/about" className='links'>{props.about}</Link></li>
                     <li>{props.provides}</li>
                     <li>Contact Us</li>
                 </ul>

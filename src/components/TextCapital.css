@@ -12,3 +12,11 @@ button{
     margin-top: 23px;
     background-color: rgb(216, 232, 72);
 }
+
+.info{
+    text-align: center;
+    margin: 23px;
+}
+.words{
+    padding: 9px;
+}
