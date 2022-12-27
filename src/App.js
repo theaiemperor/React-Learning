@@ -6,6 +6,7 @@ import PageContent from './components/PageContent';
 
 export default class App extends Component {
   render() {
+    
     return (
       <div>
         <Navbar/>
