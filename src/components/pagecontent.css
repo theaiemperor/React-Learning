@@ -1,0 +1,69 @@
+header{
+    text-align: center;
+}
+
+#container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 34px;
+    flex-wrap: wrap;
+    border: 2px solid red;
+}
+
+.cards{
+    border: 2px solid green;
+    width: 280px;
+    height: 310px;
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
+    flex: content;
+}
+
+.cheading{
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid brown;
+    padding: 3px;
+    flex: 1;
+    padding-bottom: 5px;
+}
+
+.cimg{
+    width: inherit;
+    height: 9rem;
+    flex: 6;
+    margin-bottom: 3px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid brown;
+    text-align: center;
+}
+
+.cimg img{
+    width: 10rem;
+}
+
+.ccontent{
+    margin-top: 3px;
+    flex: 4;
+    text-align: center;
+}
+
+.btn{
+
+    width: fit-content;
+    text-align: center;
+    color: blue;
+    background-color: wheat;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width:300px) {
+    .cards{
+        background-color: yellow;
+    }
+}
