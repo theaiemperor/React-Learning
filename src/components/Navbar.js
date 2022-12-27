@@ -1,18 +1,18 @@
 import React from 'react'
 import './navbar.css';
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 
 
-console.log("Propes in Javascript");
 export default function Navbar(props) {
     return (
         <>
             <div className="navigationBar">
                 <ul>
-                    <li>{props.title}</li>
-                    <li>Home</li>
+                <li>{props.title}</li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">{props.about}</Link></li>
                     <li>{props.provides}</li>
-                    <li>{props.about}</li>
                     <li>Contact Us</li>
                 </ul>
             </div>
