@@ -6,6 +6,9 @@ connectToMongo();
 const app = express()
 const port = 3000;
 
+// We have to use this mediator to send data in json formate
+app.use(express.json());
+
 
 // Available routes
 app.use("/api/authenticate" , require("./routes/authentication"))
