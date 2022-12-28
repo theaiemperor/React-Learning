@@ -1,88 +1,84 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import Newbox from './Newsbox';
 import './pagecontent.css'
 
+const PageContent = (props) => {
 
+    const [contenofpage, setcontenofpage] = useState([])
+    const [dynamiccontent, setdynamiccontent] = useState([])
+    const [TotalResult, setTotalResult] = useState([].length)
+    const [NoOfboxes, setNoOfboxes] = useState(props.showboxcount)
+    const [nb, setnb] = useState(false)
+    const [pb, setpb] = useState(true)
+    const [count] = useState(props.showboxcount)
 
-export class PageContent extends Component {
-
-
-    pagecontent = []
-
-    constructor() {
-        super();
-        this.state = {
-            contentofpage: this.pagecontent,
-            dynamiccontent: this.pagecontent,
-            TotalResult: this.pagecontent.length,
-            NoOfboxes: 14,   
-            nb: false,
-            pb: true,
-            count: 14,
-        }
-    }
-
-
-    componentDidMount() {
+    useEffect(() => {
         let url = "../newsdata.json";
-
-
         fetch(url).then((response) => {
             return response.text();
         }).then((data) => {
             let data2 = JSON.parse(data);
-            this.setState({ dynamiccontent: data2, TotalResult: data2.length, contentofpage: data2.slice(0, this.state.count) })
+            setdynamiccontent(data2)
+            setTotalResult(data2.length)
+            setcontenofpage(data2.slice(0, count))
         })
-    }
+        // If we want to clean console warning without adding dependecy to array then we have to write this comment
+        //  eslint-disable-next-line
+    }, [])
 
 
 
-    previousbutton = () => {
 
-        this.setState({ NoOfboxes: this.state.NoOfboxes - this.state.count })
-        if (this.state.NoOfboxes === this.state.count) {
-            this.setState({ pb: true })
-        }
-        this.setState({ contentofpage: this.state.dynamiccontent.slice(this.state.NoOfboxes - this.state.count, this.state.NoOfboxes), nb: false })
-
-        if(this.state.NoOfboxes === this.state.count){
-        this.setState({ NoOfboxes : this.state.count })
+    const previousbutton = () => {
+        setNoOfboxes(NoOfboxes - count)
+        if (NoOfboxes === count) {
+            setpb(true)
         }
 
+        setcontenofpage(dynamiccontent.slice(NoOfboxes - count, NoOfboxes))
+        setnb(false)
+
+        if (NoOfboxes === count) {
+            setNoOfboxes(count)
+        }
+
     }
 
-    nextbutton = () => {
-        if (this.state.pb) {
-            this.setState({ contentofpage: this.state.dynamiccontent.slice(this.state.NoOfboxes, this.state.NoOfboxes + this.state.count), pb: false })
+    const nextbutton = () => {
+        if (pb) {
+            setcontenofpage(dynamiccontent.slice(NoOfboxes, NoOfboxes + count));
+            setpb(false);
         } else {
-            this.setState({ NoOfboxes: (this.state.NoOfboxes + this.state.count) })
-            if (this.state.NoOfboxes === Math.ceil((this.state.TotalResult / this.state.count) - 2) * this.state.count) {
-                this.setState({ nb: true })
+            setNoOfboxes(NoOfboxes + count);
+            if (NoOfboxes === Math.ceil((TotalResult / count) - 2) * count) {
+                setnb(true)
             }
-            this.setState({ contentofpage: this.state.dynamiccontent.slice(this.state.NoOfboxes + this.state.count, this.state.NoOfboxes + 2 * this.state.count), pb: false })
+            setcontenofpage(dynamiccontent.slice(NoOfboxes + count, NoOfboxes + 2 * count))
+            setpb(false)
         }
-
     }
 
 
-    render() {
-        return (
-            <>
-                <header>This is a news Website</header>
-                <div id="container" >
-                    {this.state.contentofpage.map((element) => {
-                        return <div className="contain" key={element.id}>
-                            <Newbox heading={element.heading} imageUrl={element.imageUrl} content={element.content.slice(0, 140)} click={() => { window.alert(element.content) }} />
-                        </div>
-                    })}
-                </div>
-                <div className="btns">
-                    <button className="buttons" onClick={this.previousbutton} disabled={this.state.pb} >&larr; Previous</button>
-                    <button className="buttons" onClick={this.nextbutton} disabled={this.state.nb} >Next &rarr;</button>
-                </div>
-            </>
-        )
-    }
+    return (
+        <>
+            <header>This is a news Website</header>
+            <div id="container" >
+                {contenofpage.map((element) => {
+                    return <div className="contain" key={element.id}>
+                        <Newbox heading={element.heading} imageUrl={element.imageUrl} content={element.content.slice(0, 140)} click={() => { window.alert(element.content) }} />
+                    </div>
+                })}
+            </div>
+            <div className="btns">
+                <button className="buttons" onClick={previousbutton} disabled={pb} >&larr; Previous</button>
+                <button className="buttons" onClick={nextbutton} disabled={nb} >Next &rarr;</button>
+            </div>
+        </>
+    )
+}
+
+PageContent.defaultProps = {
+    showboxcount : 4
 }
 
 export default PageContent
