@@ -12,6 +12,8 @@ app.use(express.json());
 
 // Available routes
 app.use("/api/authenticate" , require("./routes/authentication"))
+app.use('/api/authenticate', require('./routes/Notes'))
+
 
 
 
