@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../models/UserSchema");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
@@ -37,7 +38,17 @@ router.post("/",
                 password: securePassword,
                 email: req.body.email,
             });
-            res.status(200).json({ Ok: "User created" });
+
+            // Creating User Authentication token
+            const JWT_SECRET = "This is a secret string for signing jwt token.";
+            const data = { user : {id : user.id}}
+            const authenticationToken = jwt.sign(data,JWT_SECRET);
+
+
+
+
+
+            res.status(200).json({ authenticationToken });
 
         } catch (error) {
             res.status(500).send("Backend Error")
