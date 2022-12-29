@@ -3,6 +3,7 @@ const User = require("../models/UserSchema");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const getUser = require("../middleware/GetUser");
 
 const router = express.Router();
 
@@ -71,10 +72,10 @@ router.post("/signIn",
             return res.status(400).json({ errors: errors.array() })
         }
 
-        const {email , password} = req.body;
+        const { email, password } = req.body;
 
         try {
-            let user = await User.findOne({ email});
+            let user = await User.findOne({ email });
             if (!user) {
                 return res.status(400).json({ error: "Invalid credentials" })
             }
@@ -90,6 +91,22 @@ router.post("/signIn",
             const authenticationToken = jwt.sign(data, JWT_SECRET);
 
             res.status(200).json({ authenticationToken });
+
+        } catch (error) {
+            res.status(500).send("Backend Error")
+        }
+    })
+
+
+
+
+// Getting User details
+router.post("/getUser", getUser,
+    async (req, res) => {
+        try {
+            userid = req.user.id;
+            const user = await User.findById(userid).select("-password")
+            res.send(user);
 
         } catch (error) {
             res.status(500).send("Backend Error")
