@@ -1,0 +1,59 @@
+.box{
+    border: 3px solid green;
+    width: 222px;
+    margin: 9px;
+    display: flex;
+    flex-direction: column;
+    background-color: #5ae05a;
+}
+
+.elements{
+    padding: 3px;
+    text-align: center;
+
+}
+
+
+.title{
+    font-weight: bold;
+    flex: 2;
+    margin-bottom: 10px;
+}
+.description{
+    color: rgb(10, 8, 8);
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
+    padding-bottom: 10px;
+    overflow-y: scroll;
+    height: 155px;
+    padding-top: 23px;
+}
+
+.edit{
+    margin-top: 10px;
+    font-size: small;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    flex: 1;
+}
+
+.editelement{
+    background-color: rgb(172, 145, 197);
+    margin-left: 15px;
+    cursor: pointer;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}
+
+.editelemen{
+    margin-left: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.NoteBoxmini{
+    display: inline-block;
+}

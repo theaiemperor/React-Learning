@@ -35,3 +35,14 @@ button{
     height: 25px;
     border-radius: 23px;
 }
+
+.Notes{
+    max-height: 300px;
+    background-color: yellow;
+    overflow-y: scroll;
+    margin-right: 44px;
+    margin-left: 44px;
+    background-color: rgb(231, 212, 212);
+    min-width: fit-content;
+    padding-left: 33px;
+}
