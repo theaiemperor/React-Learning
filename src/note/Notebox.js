@@ -7,7 +7,7 @@ import noteContext from '../context/notes/noteContext';
 export default function Notebox(props) {
     const { Notes  } = props;
     const context = useContext(noteContext);
-    const { deleteNotes } = context;
+    const { deleteNotes , editNotes } = context;
 
     const deleteNote = () => {
         deleteNotes(Notes._id);
@@ -15,11 +15,10 @@ export default function Notebox(props) {
 
 
 
-
     return (
         <>
 
-            <div className="NoteBoxmini">
+            <div className="NoteBoxmini" id="s">
 
                 <div className="box">
                     <div className="title elements">{Notes.title}</div>
@@ -27,7 +26,7 @@ export default function Notebox(props) {
                     <div className="edit">
                         <span className="editelemen tag">{Notes.tag}</span>
                         <span className="editelement delete" onClick={deleteNote}>Delete</span>
-                        <span className="editelement edit">Edit</span>
+                        <span className="editelement edit" >Edit</span>
                     </div>
                 </div>
             </div>

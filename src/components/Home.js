@@ -25,7 +25,7 @@ const tagChange = (e) => {
 
 const clicked = (e) => {
     e.preventDefault();
-    if(noteValue.tag == ""){
+    if(noteValue.tag === ""){
         noteValue.tag = "General"
     }
     addNotes(noteValue.title, noteValue.description, noteValue.tag)
@@ -50,7 +50,7 @@ return (
                         <input type="text" name="tag" className="form-inp" id="tagid" placeholder="General" defaultValue="General" onChange={tagChange} />
                     </div>
                     <div className="element">
-                        <button type="submit" disabled={((noteValue.title=="" || noteValue.description=="")||(noteValue.title.length<3 || noteValue.description.length<3))} onClick={clicked}>Create Note</button>
+                        <button type="submit" disabled={((noteValue.title==="" || noteValue.description==="")||(noteValue.title.length<3 || noteValue.description.length<3))} onClick={clicked}>Create Note</button>
                     </div>
                 </form>
             </div>

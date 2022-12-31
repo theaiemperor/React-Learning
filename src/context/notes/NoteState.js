@@ -141,6 +141,15 @@ const NoteState = (props) => {
     // Editing a note
     const editNotes = (noteid, title, description, tag) => {
 
+        noteof.forEach(element => {
+            if(element._id === noteid){
+                element.title = title;
+                element.description = description;
+                element.tag = tag;
+                console.log(element)
+            }
+        });
+
     }
 
 
