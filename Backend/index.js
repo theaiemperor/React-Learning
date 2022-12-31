@@ -1,5 +1,6 @@
 const connectToMongo = require("./db");
 const express = require("express");
+const cores = require("cors");
 
 connectToMongo();
 
@@ -8,6 +9,7 @@ const port = 5000;
 
 // We have to use this mediator to send data in json formate
 app.use(express.json());
+app.use(cores());
 
 
 // Available routes
