@@ -12,7 +12,7 @@ export default function Notes() {
 
     return (
         <>
-            <div className="cc">
+            <div id="notescontainer">
                 {noteof.map((note) => {
                     return <Notebox key={note._id} Notes={note} />
                 })}

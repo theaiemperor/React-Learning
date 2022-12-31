@@ -45,29 +45,26 @@ const NoteState = (props) => {
 
     // Deleteing a note
     const deleteNotes = async(noteId) => {
-        // const newNote = noteof.filter((no) => { return noteId !== no._id })
-        // setNote(newNote)
         const response = await fetch(`${notesurl}/deleteNotes/${noteId}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
                 'authToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhZWE2N2YyMDZkNDQ0OGIxOTYwNWFlIn0sImlhdCI6MTY3MjM5MDI3MX0.N0OtDOQV6VTcWyNBKgZv6nx0cIgFYgtEmuCFZDZQmsU'
             }
-            // body: JSON.stringify({title:title , description:description , tag:tag})
         })
     }
 
     // Editing a note
-    const editNotes = (noteid, title, description, tag) => {
+    const editNotes = async(noteId, title, description, tag) => {
 
-        noteof.forEach(element => {
-            if (element._id === noteid) {
-                element.title = title;
-                element.description = description;
-                element.tag = tag;
-                // console.log(element)
-            }
-        });
+        const response = await fetch(`${notesurl}/updateNotes/${noteId}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'authToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhZWE2N2YyMDZkNDQ0OGIxOTYwNWFlIn0sImlhdCI6MTY3MjM5MDI3MX0.N0OtDOQV6VTcWyNBKgZv6nx0cIgFYgtEmuCFZDZQmsU'
+            },
+            body: JSON.stringify({title:title , description:description , tag:tag})
+        })
 
     }
 
