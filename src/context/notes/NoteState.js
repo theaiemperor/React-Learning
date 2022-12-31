@@ -134,7 +134,8 @@ const NoteState = (props) => {
 
     // Deleteing a note
     const deleteNotes = (noteId) => {
-
+        const newNote = noteof.filter((no)=>{return noteId !== no._id})
+        setNote(newNote)
     }
 
     // Editing a note

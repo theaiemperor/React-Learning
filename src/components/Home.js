@@ -47,7 +47,7 @@ return (
                     </div>
                     <div className="element">
                         <label htmlFor="description" className="form-label">Tag</label>
-                        <input type="text" name="tag" className="form-inp" id="tagid" defaultValue="General" onChange={tagChange} />
+                        <input type="text" name="tag" className="form-inp" id="tagid" placeholder="General" defaultValue="General" onChange={tagChange} />
                     </div>
                     <div className="element">
                         <button type="submit" disabled={((noteValue.title=="" || noteValue.description=="")||(noteValue.title.length<3 || noteValue.description.length<3))} onClick={clicked}>Create Note</button>
