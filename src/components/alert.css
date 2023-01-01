@@ -1,0 +1,17 @@
+.alertbox {
+    border-radius: 12px;
+    position: absolute;
+    width: 333px;
+    padding: 13px;
+    right: 12px;
+    width: fit-content;
+    max-width: 450px;
+}
+
+.alertmsg {
+    margin: 3px;
+}
+
+.alerttitle {
+    font-weight: bold;
+}

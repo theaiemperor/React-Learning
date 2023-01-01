@@ -1,0 +1,75 @@
+.MeditModal {
+    width: 100%;
+    position: absolute;
+    left: auto;
+    align-items: center;
+    text-align: left;
+    min-width: fit-content;
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.Mcontainer {
+    width: fit-content;
+    padding: 12px;
+    background-color: rgb(44, 190, 178);
+    border-radius: 23px;
+    /* display: none; */
+
+}
+
+.selectlogin{
+    display: flex;
+    background-color: yellow;
+    padding-top: 5px;
+    justify-content: space-evenly;
+}
+
+.sign{
+    background-color: yellow;
+    margin-left: 12px;
+    padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    border: 2px solid yellow;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-decoration: none;
+}
+/* 
+#in{
+    background-color: rgb(44, 190, 178);
+    border-color: rgb(44, 190, 178);
+}
+
+#username , #reenter , #signupbtn{
+    display: none;
+}
+
+ */
+
+
+
+.Mform-label{
+    display: block;
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.Mform-inp{
+    width:355px;
+    max-width: inherit;
+}
+
+.Melement{
+    margin-top: 12px;
+}
+
+.authenticaiton-btn{
+    display: inline-block;
+    justify-content: center;
+}
