@@ -6,9 +6,9 @@ import "./home.css"
 import Alert from "./Alert";
 
 
-export default function Home() {
+export default function Home(props) {
     const context = useContext(noteContext);
-    const { addNotes, editNotes , deleteNotes } = context;
+    const { addNotes, editNotes, deleteNotes } = context;
     const [noteValue, setNote] = useState({ title: "", description: "", tag: "General" })
     const [title, settitle] = useState(" ")
     const [msg, setmsg] = useState(" ")
@@ -24,9 +24,8 @@ export default function Home() {
 
         setTimeout(() => {
             setdis('none')
-        }, 1000);
+        }, 3000);
     }
-
 
 
 
@@ -46,6 +45,29 @@ export default function Home() {
 
     }
 
+    // Fixing issue
+
+    let notesurl = "http://localhost:5000/api/authenticate"
+    const [noteof, setNoteshow] = useState([])
+
+    const showNotes = async () => {
+        try {
+            const response = await fetch(`${notesurl}/getNotes`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authToken': localStorage.getItem('token')
+                }
+            })
+            const allNotes = await response.json();
+            setNoteshow(allNotes)
+        } catch (e) {
+            console.log("Request not ")
+        }
+    }
+
+
+
     const submitNotes = async (e) => {
         e.preventDefault();
         if (noteValue.tag === "") {
@@ -58,7 +80,7 @@ export default function Home() {
         } else {
             alertmsgs("Note not Added", "Your note not added to your list. Write againe for adding.", "red");
         }
-        setupdate(true);
+        showNotes();
 
     }
 
@@ -95,26 +117,34 @@ export default function Home() {
 
 
 
-            document.getElementById('heading').innerText = "Add a Note";
-            document.getElementById('titleid').value = "";
-            noteValue.title=""
-            noteValue.description=""
-            noteValue.tag=""
-            document.getElementById('descriptionid').value = "";
-            document.getElementById('tagid').value = "General";
-
+        document.getElementById('heading').innerText = "Add a Note";
+        document.getElementById('titleid').value = "";
+        noteValue.title = ""
+        noteValue.description = ""
+        noteValue.tag = ""
+        document.getElementById('descriptionid').value = "";
+        document.getElementById('tagid').value = "General";
+        showNotes();
 
     }
 
 
-    const  deleteaction = async(e)=>{
+    const deleteaction = async (e) => {
         let res = await deleteNotes(e.target.className);
-        if(res){
-        alertmsgs("Note Deleted", "Your note Deleted from your list.", "green");
+        if (res) {
+            alertmsgs("Note Deleted", "Your note Deleted from your list.", "green");
             setupdate(true);
-        }else{
+        } else {
             alertmsgs("Note not Deleted", "Your note not Deleted from your list. Delete againe for Deleting.", "red");
         }
+        showNotes();
+
+    }
+
+
+    if (update) {
+        showNotes();
+        setupdate(false);
     }
 
 
@@ -126,9 +156,6 @@ export default function Home() {
                 <EditModal mode={true} />
             </>
         )
-
-
-
     } else {
 
         return (
@@ -160,7 +187,7 @@ export default function Home() {
                     </div>
                     <h2>All Notes</h2>
                     <div className="Notes" >
-                        <Notes className="nt" token={localStorage.getItem('token')} updated={update}></Notes>
+                        <Notes className="nt" notearray={noteof} />
                     </div>
 
 
