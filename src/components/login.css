@@ -7,7 +7,6 @@
     min-width: fit-content;
     display: flex;
     justify-content: center;
-    margin-top: 70px;
 }
 
 .Mcontainer {
@@ -37,20 +36,7 @@
     border: 2px solid yellow;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    text-decoration: none;
 }
-/* 
-#in{
-    background-color: rgb(44, 190, 178);
-    border-color: rgb(44, 190, 178);
-}
-
-#username , #reenter , #signupbtn{
-    display: none;
-}
-
- */
-
 
 
 .Mform-label{

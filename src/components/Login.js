@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import Alert from '../components/Alert';
-import './editmodal.css'
+import Alert from './Alert';
+import './login.css'
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function EditModal(props) {
+export default function Login(props) {
 
     const NavigateInPage = useNavigate()
 
     const authenticationsave = (token) => {
         localStorage.setItem('token',token)
+        return token;
     }
 
 
@@ -57,7 +58,6 @@ export default function EditModal(props) {
 
 
             } else {
-                console.log(userToken['error'])
                 settitle(userToken['error'])
                 settype('red')
                 setmsg('please enter right credentials')
@@ -85,7 +85,6 @@ export default function EditModal(props) {
                 const userToken = await response.json();
 
                 if (response.status !== 400) {
-                    console.log(userToken['authenticationToken'])
                     authenticationsave(userToken['authenticationToken'])
                     settitle("signUp sucessful")
                     settype('green')
@@ -100,7 +99,7 @@ export default function EditModal(props) {
 
 
                 } else {
-                    settitle("User already exists")
+                    settitle("Invalid credentials")
                     settype('red')
                     setmsg('You cannot make account using these details')
                     setdis("block")
@@ -131,15 +130,15 @@ export default function EditModal(props) {
                     <form onSubmit={onsub}>
                         <div className="Melement" id='username' style={{ display: props.mode ? "none" : "block" }}>
                             <label htmlFor="title" className="Mform-label"  >Name</label>
-                            <input type="text" name="title" className="Mform-inp" id="titleids" defaultValue="" required={!props.mode} disabled={distag} />
+                            <input type="text" name="title" className="Mform-inp" id="titleids" defaultValue="" placeholder='Enter at least 3 character ' required={!props.mode} disabled={distag} />
                         </div>
                         <div className="Melement" id='userpassword'>
                             <label htmlFor="descriptions" className="Mform-label" >Gmail</label>
-                            <input type="email" name="Mail" className="Mform-inp" id="mail" required disabled={distag} />
+                            <input type="email" name="Mail" className="Mform-inp" id="mail"  placeholder='example@email.com' required disabled={distag} />
                         </div>
                         <div className="Melement" id='email'>
-                            <label htmlFor="description" className="Mform-label">Password</label>
-                            <input type="password" name="tag" className="Mform-inp" id="pass" required disabled={distag} />
+                            <label htmlFor="description" className="Mform-label" >Password</label>
+                            <input type="password" name="tag" className="Mform-inp"  placeholder='Enter at least 3 character ' id="pass" required disabled={distag} />
                         </div>
                         <div className="Melement" id='reenter' style={{ display: props.mode ? "none" : "block" }}>
                             <label htmlFor="description" className="Mform-label" style={props.in}>Re-type Password</label>
@@ -150,8 +149,8 @@ export default function EditModal(props) {
                         </div>
                     </form>
                 </div>
-                <h6 className="alert"></h6>
             </div>
         </>
     )
 }
+

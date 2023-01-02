@@ -1,16 +1,17 @@
 import './note.css'
-import React, { useContext, useState } from 'react'
-import noteContext from '../context/notes/noteContext';
+import React from 'react'
 
 
 
 export default function Notebox(props) {
-    const { Notes  } = props;
-    const context = useContext(noteContext);
-    const { deleteNotes  } = context;
+    const { Notes } = props;
+
+
 
     const deleteNote = () => {
-        deleteNotes(Notes._id);
+        document.getElementById("delete").className = Notes._id;
+        document.getElementById("delete").click();
+
     }
 
     const editNote = () => {
@@ -22,9 +23,9 @@ export default function Notebox(props) {
 
         document.getElementById("updatebtn").style.display = "block";
         document.getElementById("updatebtn").className = Notes._id;
-        
+
         document.getElementById("submitbtn").style.display = "none";
-        document.getElementById("hidden").click();
+        document.getElementById("update").click();
 
     }
 
@@ -40,7 +41,7 @@ export default function Notebox(props) {
                     <div className="edit">
                         <span className="editelemen tag">{Notes.tag}</span>
                         <span className="editelement delete" onClick={deleteNote}>Delete</span>
-                        <span className="editelement edit"  onClick={editNote}>Edit</span>
+                        <span className="editelement edit" onClick={editNote}>Edit</span>
                     </div>
                 </div>
             </div>
