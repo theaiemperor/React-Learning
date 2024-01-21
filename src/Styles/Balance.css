@@ -1,0 +1,14 @@
+#balance{
+    border: 2px solid red;
+    border-radius: 23px;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    height: 55px;
+    align-items: center;
+    font-family: cursive;
+    font-size: 23px;
+    color: #0638e1;
+    background: #bbbfce;
+}
